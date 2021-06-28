@@ -14,7 +14,8 @@ function topic(channel) {
 		 'In which album did Rick Astley keep his long hair?',
 		 'Which album was largely an Adult Contemporary album?',
 		 'Which album did Astley covered 3 classic songs?',
-		 'When did Rickroll start to be popular?'
+		 'When did Rickroll start to be popular?',
+		 `When did Astley 'Retired'? `
   ];
   const randomtopic = topic[Math.floor(Math.random() * topic.length)];
 
