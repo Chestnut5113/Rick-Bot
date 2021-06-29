@@ -21,7 +21,7 @@ function fact(channel) {
 
  const embed = new Discord.MessageEmbed()
   .setColor('#000001')
-  .setTitle('The topic is')
+  .setTitle('The fact is')
   .setDescription(randomfact)
 
 

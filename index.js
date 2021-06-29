@@ -264,6 +264,7 @@ client.on('message', msg => {
 			case '+fact':
 			 fact(channel);
 			 break;
+			 
       case 'we re no strangers': 
           msg.channel.send('to love');
           break;
