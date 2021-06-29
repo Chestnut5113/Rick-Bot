@@ -363,26 +363,6 @@ client.on('message', msg => {
   }
 
 
-  const messages = [
-    ':8ball: | Outlook good,' + ` **${user}**`,
-    ':8ball: | Without a doubt,' + ` **${user}**`,
-    ':8ball: | Cannot predict now,' + ` **${user}**`,
-    ':8ball: | Concentrate and ask again,' + ` **${user}**`,
-    ':8ball: | Very doubtful,' + ` **${user}**`,
-    ':8ball: | My source say no,' + ` **${user}**`,
-    ':8ball: | Yes, definitely,' + ` **${user}**`,
-    ':8ball: | Yes, It is certain,' + ` **${user}**`,
-    ':8ball: | Yes,' + ` **${user}**`
-  ];
-  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-
-
-  if (msg.content === ("+8ball")) {
-    msg.channel.send("```usage of command: \n +8ball [question]```");
-  } else if (msg.content.indexOf('+8ball') > -1) {
-    msg.channel.send(randomMessage);
-
-  }
 
 
   const embedRickroll = new Discord.MessageEmbed()
