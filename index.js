@@ -8,6 +8,7 @@ const invite = require('./Module/invite');
 const resetBot = require('./Module/resetBot')
 const help = require('./Module/help')
 const topic = require('./Module/topic');
+const fact = require('./Module/fact');
 const { MessageEmbed } = require('discord.js');
 require('events').EventEmitter.defaultMaxListeners = 500;
 
@@ -260,6 +261,9 @@ client.on('message', msg => {
 			 topic(channel);
 			 break;
 			 
+			case '+fact':
+			 fact(channel);
+			 break;
       case 'we re no strangers': 
           msg.channel.send('to love');
           break;
