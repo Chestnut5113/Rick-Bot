@@ -6,7 +6,7 @@ const { channel, author } = message;
 function invite(channel) {
 
 const embedInvite = new Discord.MessageEmbed()
-  .setColor('#43B581')
+  .setColor('#003d80')
   .setTitle('Invite')
    .setAuthor(
             'Rick-Bot',

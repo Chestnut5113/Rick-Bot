@@ -5,7 +5,7 @@ const { channel, author } = message;
 function help(channel, author) {
 
 const embed = new Discord.MessageEmbed()
-  .setColor('#43B581')
+  .setColor('#003d80')
   .setTitle('List of Command 所有指令')
   .setAuthor(
             'Rick-Bot',

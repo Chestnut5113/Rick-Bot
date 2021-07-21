@@ -20,7 +20,7 @@ function topic(channel) {
   const randomtopic = topic[Math.floor(Math.random() * topic.length)];
 
  const embed = new Discord.MessageEmbed()
-  .setColor('#000001')
+  .setColor('#003d80')
   .setTitle('The topic is')
   .setDescription(randomtopic)
 

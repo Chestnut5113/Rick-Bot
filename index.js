@@ -60,7 +60,13 @@ class Music {
     }
 
     // 處理字串，將 !!play 字串拿掉，只留下 YouTube 網址
-    const musicURL = msg.content.replace(`${prefix}play`, 'https://www.youtube.com/watch?v=dQw4w9WgXcQ').trim();
+		const url = [
+			'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+			'https://www.youtube.com/watch?v=yPYZpwSpKmA',
+			'https://www.youtube.com/watch?v=BeyEGebJ1l4'
+		]
+		const randomURL = url[Math.floor(Math.random() * url.length)];
+    const musicURL = msg.content.replace(`${prefix}play`, randomURL).trim();
 
     try {
 
@@ -264,7 +270,7 @@ client.on('message', msg => {
 			case '+fact':
 			 fact(channel);
 			 break;
-			 
+
       case 'we re no strangers': 
           msg.channel.send('to love');
           break;
@@ -306,7 +312,7 @@ client.on('message', msg => {
  function ping(channel) {
 
   const embedPing = new Discord.MessageEmbed()
-    .setColor('#43B581')
+    .setColor('#003d80')
     .setTitle('Rick-Bot')
     .setURL('https://rick-bot.ml/')
     .setDescription(`I'm Rick-Bot \n \n I'm now serving at **${client.guilds.cache.size}** servers` + "\n \n" + `🏓Latency is ${Date.now() - msg.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`)
@@ -363,6 +369,25 @@ client.on('message', msg => {
   }
 
 
+  const messages = [
+    ':8ball: | Outlook good,' + ` **${user}**`,
+    ':8ball: | Without a doubt,' + ` **${user}**`,
+    ':8ball: | Cannot predict now,' + ` **${user}**`,
+    ':8ball: | Concentrate and ask again,' + ` **${user}**`,
+    ':8ball: | Very doubtful,' + ` **${user}**`,
+    ':8ball: | My source say no,' + ` **${user}**`,
+    ':8ball: | Yes, definitely,' + ` **${user}**`,
+    ':8ball: | Yes, It is certain,' + ` **${user}**`,
+    ':8ball: | Yes,' + ` **${user}**`
+  ];
+  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+
+
+   if (msg.content.indexOf('+8ball') > -1) {
+    msg.channel.send(randomMessage);
+   
+  }
 
 
   const embedRickroll = new Discord.MessageEmbed()

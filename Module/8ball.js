@@ -4,21 +4,19 @@ const client = new Discord.Client();
 
 function eightball(channel) {
   const messages = [
-    ':8ball: | Outlook good,' + ` **${user}**`,
-    ':8ball: | Without a doubt,' + ` **${user}**`,
-    ':8ball: | Cannot predict now,' + ` **${user}**`,
-    ':8ball: | Concentrate and ask again,' + ` **${user}**`,
-    ':8ball: | Very doubtful,' + ` **${user}**`,
-    ':8ball: | My source say no,' + ` **${user}**`,
-    ':8ball: | Yes, definitely,' + ` **${user}**`,
-    ':8ball: | Yes, It is certain,' + ` **${user}**`,
-    ':8ball: | Yes,' + ` **${user}**`
+    ':8ball: | Outlook good',
+    ':8ball: | Without a doubt',
+    ':8ball: | Cannot predict now',
+    ':8ball: | Concentrate and ask again',
+    ':8ball: | Very doubtful',
+    ':8ball: | My source say no',
+    ':8ball: | Yes, definitely',
+    ':8ball: | Yes, It is certain',
+    ':8ball: | Yes'
   ];
   const randomMessage = messages[Math.floor(Math.random() * messages.length)];
 
 
- channel.send(randomMessage);
 
 };
-
  module.exports = eightball
