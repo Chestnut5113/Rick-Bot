@@ -202,6 +202,7 @@ client.on('message', async (msg) => {
       // 播放音樂
       music.join(msg);
       await music.play(msg);
+			msg.react('<a:Rick_Astley_1:805027466107551775>');
     } else {
 
       // 如果使用者不在任何一個語音頻道
@@ -223,6 +224,7 @@ client.on('message', async (msg) => {
 
     // 暫停音樂
     music.pause(msg);
+		msg.react('<:thinking_good:805024773787615253>');
   }
 
   // !!skip
@@ -238,6 +240,7 @@ client.on('message', async (msg) => {
 
     // 機器人離開頻道
     music.leave(msg);
+		msg.react('<:thinking_good:805024773787615253>');
   }
 });
 
@@ -249,7 +252,7 @@ client.on('message', msg => {
 	const { content, channel, guilds, author } = msg;
 
   if (msg.author.username === client.user.username) { return; }
-
+  if(msg.author.bot) return;
  switch (content.toLowerCase()) {
       case '+help':
        help(channel, author);
@@ -415,21 +418,9 @@ client.on('messageDelete', async (message) => {
     db.set(`snipesender_${message.channel.id}`, message.author.id)
 })
 
-client.on('message', message => {
-    if(message.content === '+snipe') {
-        let msg = db.get(`snipemsg_${message.channel.id}`)
-        let senderid = db.get(`snipesender_${message.channel.id}`)
-        if(!msg) {
-            return message.channel.send(`There is nothing to snipe. <a:Rick_Astley_1:805027466107551775>`)
-        }
-        let embed = new Discord.MessageEmbed()
-        .setTitle(client.users.cache.get(senderid).username, client.users.cache.get(senderid).displayAvatarURL({ format: "png", dynamic: true }))
-        .setDescription(msg)
-        .setColor("RANDOM")
-        .setTimestamp()
-        message.channel.send(embed)
-    }
-}) 
+
+
+
   if (process.env.DEV_USERS_ID === author.id)
     switch (content.toUpperCase()) {
       case '+RESET':
@@ -440,7 +431,4 @@ client.on('message', message => {
 
 });
 
-// You really don't want  your token here since your repl's code
-// is publically available. We'll take advantage of a Repl.it 
-// feature to hide the token we got earlier. 
 client.login(process.env.DISCORD_TOKEN);
