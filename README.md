@@ -7,6 +7,6 @@ Not affiliated with Rick Astley.
 Check all information of the bot at https://rick-bot.ml/ <br/>
 Discord Server: https://discord.gg/5TqfFzaQet <br />
 ## Credit
-Music Function by https://github.com/B-l-u-e-b-e-r-r-y/Discord-Bot-02<br/>
+Music Function powered by https://github.com/B-l-u-e-b-e-r-r-y/Discord-Bot-02<br/>
 Bot inspire by https://github.com/JackyKit123<br/>
 Cooperate with https://replit.com/@1NFNITY

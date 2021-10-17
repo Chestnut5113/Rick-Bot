@@ -12,6 +12,7 @@ const fact = require('./Module/fact');
 const { joinVoiceChannel } = require('@discordjs/voice');
 const { MessageEmbed } = require('discord.js');
 const adapterCreator = require('@discordjs/voice');
+
 require('events').EventEmitter.defaultMaxListeners = 500;
 
 app.get('/', (req, res) => res.send('<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'));
@@ -26,9 +27,8 @@ const client = new Discord.Client();
 
 client.on('ready', () => {
   let activities = [`Rickrolling ${client.guilds.cache.size} servers`, '1 Billion Views!!', '+help', 'rick-bot.ml', 'Never Gonna Give You Up', '+play for Rickroll', `Rickrolling ${client.users.cache.size} users`]
-	 let logChannel = client.channels.cache.get(process.env.LOG_CHANNEL_ID)
   let randomStatus = activities[Math.floor((Math.random() * activities.length))]
-
+let logChannel = client.channels.cache.get(process.env.LOG_CHANNEL_ID)
   console.log(`Logged in as ${client.user.tag}!`);
   logChannel.send(`Timestamp: ${new Date().toTimeString()}, bot is booted.`);
 
@@ -40,6 +40,16 @@ client.on('ready', () => {
    await resetBot, 43200000)
 
 });
+
+client.on("guildCreate", guild => {
+	let logChannel = client.channels.cache.get(process.env.LOG_CHANNEL_ID)
+	logChannel.createInvite({ unique: true, temporary: false }).then(invite => {
+  console.log(invite.code);
+	logChannel.send(`The bot just joined to ${guild.name}, Owned by ${guild.owner.user.tag} \r The invite link: discord.gg/${invite.code}`);
+});
+})
+
+
  class Music {
 
   constructor() {
