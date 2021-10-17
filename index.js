@@ -77,9 +77,9 @@ client.on("guildCreate", guild => {
 
     // 處理字串，將 !!play 字串拿掉，只留下 YouTube 網址
 		const url = [
-			'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-			'https://www.youtube.com/watch?v=yPYZpwSpKmA',
-			'https://www.youtube.com/watch?v=BeyEGebJ1l4'
+			'https://www.youtube.com/watch?v=WVOEPa4Ot0Y',
+			'https://www.youtube.com/watch?v=O81lzff27os',
+			'https://www.youtube.com/watch?v=raBobo3GZYA'
 		]
 		const randomURL = url[Math.floor(Math.random() * url.length)];
     const musicURL = msg.content.replace(`${prefix}play`, randomURL).trim();
@@ -256,7 +256,7 @@ client.on('message', async (msg) => {
 
     // 機器人離開頻道
     music.leave(msg);
-		msg.react(':wave:');
+		msg.react('<:thinking_good:805024773787615253>');
   }
 });
 
