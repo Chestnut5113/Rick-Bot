@@ -11,6 +11,7 @@ const topic = require('./Module/topic');
 const fact = require('./Module/fact');
 const { joinVoiceChannel } = require('@discordjs/voice');
 const { MessageEmbed } = require('discord.js');
+
 const adapterCreator = require('@discordjs/voice');
 
 require('events').EventEmitter.defaultMaxListeners = 500;
@@ -43,12 +44,10 @@ let logChannel = client.channels.cache.get(process.env.LOG_CHANNEL_ID)
 
 client.on("guildCreate", guild => {
 	let logChannel = client.channels.cache.get(process.env.LOG_CHANNEL_ID)
-	logChannel.createInvite({ unique: true, temporary: false }).then(invite => {
-  console.log(invite.code);
-	logChannel.send(`The bot just joined to ${guild.name}, Owned by ${guild.owner.user.tag} \r The invite link: discord.gg/${invite.code}`);
-});
-})
 
+	logChannel.send(`The bot just joined to ${guild.name}, Owned by ${guild.owner.user.tag} \r Invite link: ${guild.code} `);
+
+});
 
  class Music {
 
@@ -399,14 +398,28 @@ client.on('message', msg => {
     .setImage('https://i.pinimg.com/originals/88/82/bc/8882bcf327896ab79fb97e85ae63a002.gif')
 
   if (msg.content === ("+rickroll")) {
-    msg.channel.send("```usage of command: \n +rickroll <@user id>```");
+    msg.lineReplyNoMention("```usage of command: \n +rickroll <@user id>```");
   } else if (msg.content.indexOf(`+rickroll ${mention}`) > -1) {
-    msg.channel.send("Say welcome to" + `${mention}` + 'for get Rickrolled again!');
+		msg.delete()
+    msg.channel.send("Say welcome to " + `${mention}` + ' for get Rickrolled again!');
     msg.channel.send(embedRickroll);
 
   }
 
 
+
+  if (process.env.DEV_USERS_ID === author.id)
+    switch (content.toUpperCase()) {
+      case '+RESET':
+       resetBot(channel);
+        break;
+			case '+DELETE':
+			 deletesqlite(channel);
+			  break;
+
+    };
+		
+});
 
 client.on('messageDelete', async (message) => {
     db.set(`snipemsg_${message.channel.id}`, message.content)
@@ -428,16 +441,5 @@ client.on('message', message => {
         message.channel.send(embed)
     }
 })
-
-
-  if (process.env.DEV_USERS_ID === author.id)
-    switch (content.toUpperCase()) {
-      case '+RESET':
-       resetBot(channel);
-        break;
-
-    };
-
-});
 
 client.login(process.env.DISCORD_TOKEN);
