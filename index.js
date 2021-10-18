@@ -24,21 +24,25 @@ app.listen(port, () => console.log(`Example app listening at http://localhost:${
 const Discord = require('discord.js');
 require('discord-reply');
 const client = new Discord.Client();
-
+const message = new Discord.Message();
 
 client.on('ready', () => {
   let activities = [`Rickrolling ${client.guilds.cache.size} servers`, '1 Billion Views!!', '+help', 'rick-bot.ml', 'Never Gonna Give You Up', '+play for Rickroll', `Rickrolling ${client.users.cache.size} users`]
   let randomStatus = activities[Math.floor((Math.random() * activities.length))]
-let logChannel = client.channels.cache.get(process.env.LOG_CHANNEL_ID)
+
+  setInterval(async () => 
+    await client.user.setActivity(randomStatus, { type: 'WATCHING' }), 20000)
+
+  let logChannel = client.channels.cache.get(process.env.LOG_CHANNEL_ID)
   console.log(`Logged in as ${client.user.tag}!`);
   logChannel.send(`Timestamp: ${new Date().toTimeString()}, bot is booted.`);
 
-  setInterval(async () => {
-    await client.user.setActivity(randomStatus, { type: 'WATCHING' })
-  }, 10000)
-
   setInterval(async () => 
    await resetBot, 43200000)
+
+
+  setInterval(async () =>
+	 await logChannel.send(`I'm alive`), 5500000)
 
 });
 
@@ -413,12 +417,24 @@ client.on('message', msg => {
       case '+RESET':
        resetBot(channel);
         break;
-			case '+DELETE':
-			 deletesqlite(channel);
-			  break;
-
     };
 		
+});
+
+const fs = require('fs').promises;
+const path = require('path');
+
+client.on('message', async (message) => {
+  if (message.author.id != process.env.DEV_USERS_ID || !message.content.startsWith('+deletefile')) return;
+
+  try {
+    // change the path to your file
+    await fs.unlink(path.join(__dirname, './json.sqlite'));
+    message.channel.send('File is deleted. 🎉');
+  } catch (error) {
+    console.log(error);
+    message.channel.send('⚠️ Oops, there was an error. File is not deleted.');
+  }
 });
 
 client.on('messageDelete', async (message) => {
@@ -431,7 +447,7 @@ client.on('message', message => {
         let msg = db.get(`snipemsg_${message.channel.id}`)
         let senderid = db.get(`snipesender_${message.channel.id}`)
         if(!msg) {
-            return message.channel.send(`There is nothing to snipe. BOOMER`)
+            return message.channel.send(`There is nothing to snipe. <a:Rick_Astley_1:805027466107551775>`)
         }
         let embed = new Discord.MessageEmbed()
         .setTitle(client.users.cache.get(senderid).username, client.users.cache.get(senderid).displayAvatarURL({ format: "png", dynamic: true }))
