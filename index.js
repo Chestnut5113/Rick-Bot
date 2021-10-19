@@ -11,7 +11,6 @@ const topic = require('./Module/topic');
 const fact = require('./Module/fact');
 const { joinVoiceChannel } = require('@discordjs/voice');
 const { MessageEmbed } = require('discord.js');
-
 const adapterCreator = require('@discordjs/voice');
 
 require('events').EventEmitter.defaultMaxListeners = 500;
@@ -32,7 +31,6 @@ client.on('ready', () => {
 
   setInterval(async () => 
     await client.user.setActivity(randomStatus, { type: 'WATCHING' }), 20000)
-
   let logChannel = client.channels.cache.get(process.env.LOG_CHANNEL_ID)
   console.log(`Logged in as ${client.user.tag}!`);
   logChannel.send(`Timestamp: ${new Date().toTimeString()}, bot is booted.`);
@@ -454,8 +452,10 @@ client.on('message', message => {
         .setDescription(msg)
         .setColor("RANDOM")
         .setTimestamp()
-        message.channel.send(embed)
-    }
+        message.channel.send(embed).catch(error => {
+    logChannel.send(error)
+		console.log(error);
+    })
+		}
 })
-
 client.login(process.env.DISCORD_TOKEN);

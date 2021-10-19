@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const message = new Discord.Message();
 const { channel, author } = message;
-
+const client = new Discord.Client();
+let logChannel = client.channels.cache.get(process.env.LOG_CHANNEL_ID)
 function help(channel, author) {
 
 const embed = new Discord.MessageEmbed()
@@ -16,7 +17,11 @@ const embed = new Discord.MessageEmbed()
 	
 
 	channel.send('`指令清單已發送至你的私訊。The list of commands has been sent to your via DM.`')
-	author.send(embed)
-	
+	author.send(embed).catch(error => {
+    channel.send(`⚠ Something went wrong while I tried to send you a DM.`)
+		console.log(error);
+
+  })
+
 };
  module.exports = help
