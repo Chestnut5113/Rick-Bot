@@ -26,7 +26,7 @@ const client = new Discord.Client();
 const message = new Discord.Message();
 
 client.on('ready', () => {
-  let activities = [`Rickrolling ${client.guilds.cache.size} servers`, '1 Billion Views!!', '+help', 'rick-bot.ml', 'Never Gonna Give You Up', '+play for Rickroll', `Rickrolling ${client.users.cache.size} users`]
+  let activities = [`Rickrolling ${client.guilds.cache.size} servers`, '1 Billion Views!!', '+help', 'rick-bot.ml', 'Never Gonna Give You Up', '+play for Rickroll', 'Rick Astley', `Rickrolling ${client.users.cache.size} users`]
   let randomStatus = activities[Math.floor((Math.random() * activities.length))]
 
   setInterval(async () => 
@@ -367,7 +367,7 @@ client.on('message', msg => {
   if (msg.content === '+rickgif') {
     number = 7;
     imageNumber = Math.floor(Math.random() * (number - 1 + 1)) + 1;
-    msg.channel.send({ files: ["./Rickroll/" + imageNumber + ".gif"] })
+    msg.channel.send({ files: ["./GIF/Rickroll/" + imageNumber + ".gif"] })
   }
 
 
