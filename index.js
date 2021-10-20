@@ -365,7 +365,7 @@ client.on('message', msg => {
   }
 
   if (msg.content === '+rickgif') {
-    number = 7;
+    number = 9;
     imageNumber = Math.floor(Math.random() * (number - 1 + 1)) + 1;
     msg.channel.send({ files: ["./GIF/Rickroll/" + imageNumber + ".gif"] })
   }
