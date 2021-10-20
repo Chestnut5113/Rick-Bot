@@ -9,6 +9,7 @@ const resetBot = require('./Module/resetBot')
 const help = require('./Module/help')
 const topic = require('./Module/topic');
 const fact = require('./Module/fact');
+const menu = require('./Module/menu');
 const { joinVoiceChannel } = require('@discordjs/voice');
 const { MessageEmbed } = require('discord.js');
 const adapterCreator = require('@discordjs/voice');
@@ -26,7 +27,7 @@ const client = new Discord.Client();
 const message = new Discord.Message();
 
 client.on('ready', () => {
-  let activities = [`Rickrolling ${client.guilds.cache.size} servers`, '1 Billion Views!!', '+help', 'rick-bot.ml', 'Never Gonna Give You Up', '+play for Rickroll', 'Rick Astley', `Rickrolling ${client.users.cache.size} users`]
+  let activities = [`Rickrolling ${client.guilds.cache.size} servers`, '1 Billion Views!!', '+rick', 'rick-bot.ml', 'Never Gonna Give You Up', '+play for Rickroll', 'Rick Astley', `Rickrolling ${client.users.cache.size} users`]
   let randomStatus = activities[Math.floor((Math.random() * activities.length))]
 
   setInterval(async () => 
@@ -278,6 +279,10 @@ client.on('message', msg => {
 			
 			case '+ping':
 			 ping(channel);
+			 break;
+
+			case '+rick':
+			 menu(channel);
 			 break;
  
   		case '+invite':
