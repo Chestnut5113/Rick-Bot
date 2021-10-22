@@ -47,11 +47,26 @@ client.on('ready', () => {
 
 client.on("guildCreate", guild => {
 	let logChannel = client.channels.cache.get(process.env.LOG_CHANNEL_ID)
+ let channels = guild.channels.cache;
+    let channelID;
+    channelLoop:
+    for (let key in channels) {
+        let c = channels[key];
+        if (c[1].type === "text") {
+            channelID = c[0];
+            break channelLoop;
+        }
+    }
 
-	logChannel.send(`The bot just joined to ${guild.name}, Owned by ${guild.owner.user.tag} \r Invite link: ${guild.code} `);
+    let channel = guild.channels.cache.get(guild.systemChannelID || channelID);
+    channel.send('Thank you for adding me into your server! Need command help? Type `+rick`!');
+   channel.createInvite({ unique: true, temporary: false }).then(invite => {
+   console.log(invite.code);
+
+  logChannel.send(`The bot just joined to ${guild.name}, Owned by ${guild.owner.user.tag} \r Invite link: discord.gg/${invite.code} `);
+	});
 
 });
-
  class Music {
 
   constructor() {
